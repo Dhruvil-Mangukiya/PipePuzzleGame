@@ -15,7 +15,7 @@ public class LevelLoader : MonoBehaviour
     [Header("Board")]
     public GameObject BOARD_PREFAB;
 
-    [Header("StartendPipe_Prefabs")]
+    [Header("StartendPipe_Prefab;s")]
     public GameObject startPipe_Prefab;
     public GameObject endPipe_Prefab;
 
@@ -57,8 +57,5 @@ public class LevelLoader : MonoBehaviour
     {
         GameObject startPipe = Instantiate(startPipe_Prefab, new Vector3(STARTEND_X_POSITION[0], STARTEND_Y_POSITION[0], 0f), Quaternion.identity, LEVEL_MANAGER);
         startPipe.name = "StartPipe";
-
-        GameObject endPipe = Instantiate(endPipe_Prefab, new Vector3(STARTEND_X_POSITION[3], STARTEND_Y_POSITION[1], 0f), Quaternion.identity, LEVEL_MANAGER);
-        endPipe.name = "EndPipe";
     }
 }
