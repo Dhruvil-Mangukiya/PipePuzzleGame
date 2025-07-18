@@ -22,15 +22,11 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] float[] startend_x_position = { -3.831f, -1.28f, 1.28f, 3.831f };
     [SerializeField] float[] startend_y_position = { 5.55f, -5.55f };
 
-    [Header("Pipe")]
-    public GameObject pipe_Prefab;
-
     public void Level()
     {
         BackGroundBoard();
         Grid();
         StartEndPipes();
-        SpawnPipeAt(3, 3);
     }
 
     void Grid()
@@ -64,11 +60,5 @@ public class LevelLoader : MonoBehaviour
 
         GameObject endPipe = Instantiate(endPipe_Prefab, new Vector3(startend_x_position[3], startend_y_position[1], 0f), Quaternion.identity, level_manager);
         endPipe.name = "EndPipe";
-    }
-
-    public void SpawnPipeAt(int x, int y)
-    {
-        Vector3 spawnPosition = new Vector3(x * rows, y * columns, 0);
-        Instantiate(pipe_Prefab, spawnPosition, Quaternion.identity);
     }
 }
