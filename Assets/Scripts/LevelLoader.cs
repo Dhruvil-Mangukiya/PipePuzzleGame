@@ -34,7 +34,7 @@ public class LevelLoader : MonoBehaviour
     [Header("Pipes")]
     public PipeData[] pipeDatas;
 
-    void Start()
+    public void LoadLevel()
     {
         BackGroundBoard();
         Grid();
