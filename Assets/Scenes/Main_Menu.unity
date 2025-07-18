@@ -14413,7 +14413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1839927406
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15440,6 +15440,37 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1919427408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1919427409}
+  m_Layer: 0
+  m_Name: Pipes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1919427409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919427408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8289156646149048913}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1939239853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17387,6 +17418,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141611159}
   m_CullTransparentMesh: 1
+--- !u!1 &2142632484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142632485}
+  m_Layer: 0
+  m_Name: Tiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2142632485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142632484}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8289156646149048913}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3269112370476799892
 GameObject:
   m_ObjectHideFlags: 0
@@ -17473,7 +17535,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2142632485}
+  - {fileID: 1919427409}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8289156646149048914
@@ -17488,24 +17552,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263d3ead33beb4808985f51bef3dad27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level_manager: {fileID: 8289156646149048913}
+  LevelManager: {fileID: 8289156646149048913}
+  TilesHolder: {fileID: 2142632485}
+  PipesHolder: {fileID: 1919427409}
+  board_Prefab: {fileID: 7502453817484761116, guid: 1e5884058225a4e37a0f78a9116a7617, type: 3}
   tile_Prefab: {fileID: 9115945741123499100, guid: 73649c641cc6244dcbbca4e52d1ac6e5, type: 3}
+  startPipe_Prefab: {fileID: 7583382254151484004, guid: 0a20caf2caaef4d5eb581e995f97951c, type: 3}
+  endPipe_Prefab: {fileID: 1478254733506555063, guid: ddcce1e12713740fc89c1213a1cc4e9a, type: 3}
   rows: 4
   columns: 4
   spacing: 2.5
-  board_Prefab: {fileID: 7502453817484761116, guid: 1e5884058225a4e37a0f78a9116a7617, type: 3}
-  startPipe_Prefab: {fileID: 7583382254151484004, guid: 0a20caf2caaef4d5eb581e995f97951c, type: 3}
-  endPipe_Prefab: {fileID: 3313281990351593799, guid: ddcce1e12713740fc89c1213a1cc4e9a, type: 3}
-  startend_x_position:
-  - -3.831
-  - -1.28
-  - 1.28
-  - 3.831
-  startend_y_position:
-  - 5.55
-  - -5.55
-  pipe_Prefab: {fileID: 8807532268689791898, guid: d060c58822e03405ea326a1bdd511a91, type: 3}
-  cellSize: 1
+  startPipeGridPos: {x: 0, y: 0}
+  endPipeGridPos: {x: 3, y: 2}
+  pipeDatas:
+  - gridPosition: {x: 0, y: 0}
+    pipePrefab: {fileID: 8807532268689791898, guid: e765ff3bf047a4fc9b562abecbd476ad, type: 3}
+  - gridPosition: {x: 0, y: 1}
+    pipePrefab: {fileID: 7162645905146414453, guid: 750f0b4756e8f4a0babcf1c425f00073, type: 3}
+  - gridPosition: {x: 1, y: 1}
+    pipePrefab: {fileID: 8807532268689791898, guid: e765ff3bf047a4fc9b562abecbd476ad, type: 3}
+  - gridPosition: {x: 1, y: 2}
+    pipePrefab: {fileID: 8807532268689791898, guid: 447eb7d95af07475e9a96646f1959692, type: 3}
+  - gridPosition: {x: 0, y: 2}
+    pipePrefab: {fileID: 7162645905146414453, guid: 9bff8094d9f4e4f1fb5d4c4c48616899, type: 3}
+  - gridPosition: {x: 0, y: 3}
+    pipePrefab: {fileID: 7162645905146414453, guid: 750f0b4756e8f4a0babcf1c425f00073, type: 3}
+  - gridPosition: {x: 1, y: 3}
+    pipePrefab: {fileID: 4119321576922239879, guid: 16e75da3107734f1b84f95ddbc29844b, type: 3}
+  - gridPosition: {x: 1, y: 0}
+    pipePrefab: {fileID: 4119321576922239879, guid: 16e75da3107734f1b84f95ddbc29844b, type: 3}
+  - gridPosition: {x: 2, y: 0}
+    pipePrefab: {fileID: 8807532268689791898, guid: e765ff3bf047a4fc9b562abecbd476ad, type: 3}
+  - gridPosition: {x: 2, y: 3}
+    pipePrefab: {fileID: 8807532268689791898, guid: 447eb7d95af07475e9a96646f1959692, type: 3}
+  - gridPosition: {x: 2, y: 1}
+    pipePrefab: {fileID: 5385036432512786482, guid: de8b61bd982fb4171b092ef7ef025926, type: 3}
+  - gridPosition: {x: 2, y: 2}
+    pipePrefab: {fileID: 5385036432512786482, guid: de8b61bd982fb4171b092ef7ef025926, type: 3}
+  - gridPosition: {x: 3, y: 0}
+    pipePrefab: {fileID: 7162645905146414453, guid: 416296ecf764e42e792758957adfc458, type: 3}
+  - gridPosition: {x: 3, y: 1}
+    pipePrefab: {fileID: 8807532268689791898, guid: 792bf8d0d3c43464f8f0370c66d307e9, type: 3}
+  - gridPosition: {x: 3, y: 2}
+    pipePrefab: {fileID: 5385036432512786482, guid: de8b61bd982fb4171b092ef7ef025926, type: 3}
+  - gridPosition: {x: 3, y: 3}
+    pipePrefab: {fileID: 7162645905146414453, guid: d6f563c303403405495d6349f8ff339d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

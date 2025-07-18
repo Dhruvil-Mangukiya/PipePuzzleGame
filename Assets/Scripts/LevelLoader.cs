@@ -1,32 +1,45 @@
 using UnityEngine;
 
+[System.Serializable]
+public class PipeData
+{
+    public Vector2Int gridPosition;
+    public GameObject pipePrefab;
+}
+
 public class LevelLoader : MonoBehaviour
 {
-
     [Header("References")]
-    public Transform level_manager;
+    public Transform LevelManager;
+    public Transform TilesHolder;
+    public Transform PipesHolder;
 
-    [Header("Grid")]
-    public GameObject tile_Prefab;
-    public int rows = 4;
-    public int columns = 4;
-    public float spacing = 1.1f;
-
-    [Header("Board")]
+    [Header("Prefabs")]
     public GameObject board_Prefab;
-
-    [Header("StartendPipe_Prefab;s")]
+    public GameObject tile_Prefab;
     public GameObject startPipe_Prefab;
     public GameObject endPipe_Prefab;
 
-    [SerializeField] float[] startend_x_position = { -3.831f, -1.28f, 1.28f, 3.831f };
-    [SerializeField] float[] startend_y_position = { 5.55f, -5.55f };
+    [Header("Grid")]
+    public int rows = 4;
+    public int columns = 4;
 
-    public void Level()
+    [HideInInspector]
+    public float spacing = 2.5f;
+
+    [Header("Start and End Pipe Grid Positions")]
+    public Vector2Int startPipeGridPos = new Vector2Int(0, 0);
+    public Vector2Int endPipeGridPos = new Vector2Int(3, 3);
+
+    [Header("Pipes")]
+    public PipeData[] pipeDatas;
+
+    void Start()
     {
         BackGroundBoard();
         Grid();
-        StartEndPipes();
+        PlaceStartAndEndPipes();
+        Pipes();
     }
 
     void Grid()
@@ -41,24 +54,40 @@ public class LevelLoader : MonoBehaviour
                 Vector3 offset = new Vector3(-grid_Width / 2f, grid_Height / 2f, 0f);
 
                 Vector3 pos = new Vector3(col * spacing, -row * spacing, 0) + offset;
-                GameObject tile = Instantiate(tile_Prefab, pos, Quaternion.identity, level_manager);
-                tile.name = $"{row}.{col}";
+                Instantiate(tile_Prefab, pos, Quaternion.identity, TilesHolder).name = $"{row}.{col}";
             }
         }
     }
 
     void BackGroundBoard()
     {
-        GameObject board = Instantiate(board_Prefab, Vector3.zero, Quaternion.identity, level_manager);
-        board.name = "BackgroundBoard";
+        Instantiate(board_Prefab, Vector3.zero, Quaternion.identity, LevelManager).name = "BackgroundBoard";
     }
 
-    void StartEndPipes()
+    void PlaceStartAndEndPipes()
     {
-        GameObject startPipe = Instantiate(startPipe_Prefab, new Vector3(startend_x_position[0], startend_y_position[0], 0f), Quaternion.identity, level_manager);
-        startPipe.name = "StartPipe";
+        float grid_Width = (columns - 1) * spacing;
+        float grid_Height = (rows - 1) * spacing;
+        Vector3 offset = new Vector3(-grid_Width / 2f, grid_Height / 2f, 0f);
 
-        GameObject endPipe = Instantiate(endPipe_Prefab, new Vector3(startend_x_position[3], startend_y_position[1], 0f), Quaternion.identity, level_manager);
-        endPipe.name = "EndPipe";
+        Vector3 startPos = new Vector3(startPipeGridPos.y * spacing, -startPipeGridPos.x * spacing + 1.72f, 0f) + offset;
+        Vector3 endPos = new Vector3(endPipeGridPos.y * spacing, -endPipeGridPos.x * spacing - 1.72f, 0f) + offset;
+
+        Instantiate(startPipe_Prefab, startPos, Quaternion.identity, LevelManager).name = "StartPipe";
+        Instantiate(endPipe_Prefab, endPos, Quaternion.identity, LevelManager).name = "EndPipe";
+    }
+
+    void Pipes()
+    {
+        float grid_Width = (columns - 1) * spacing;
+        float grid_Height = (rows - 1) * spacing;
+        Vector3 offset = new Vector3(-grid_Width / 2f, grid_Height / 2f, 0f);
+
+        foreach (PipeData data in pipeDatas)
+        {
+            Vector3 pos = new Vector3(data.gridPosition.y * spacing, -data.gridPosition.x * spacing, 0f) + offset;
+
+            Instantiate(data.pipePrefab, pos, Quaternion.identity, PipesHolder).name = $"Pipe_{data.gridPosition.x}_{data.gridPosition.y}";
+        }
     }
 }
