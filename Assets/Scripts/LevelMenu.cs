@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ public class LevelMenu : MonoBehaviour
 
     public static int currLevel;
     public static int unlockedLevel;
+
+    public TextMeshProUGUI levelNameText;
 
     void Awake()
     {
@@ -72,9 +75,10 @@ public class LevelMenu : MonoBehaviour
 
     public void OpenLevel(int levelId)
     {
-        currLevel = levelId;
-        string levelName = "Level " + currLevel;
-        SceneManager.LoadScene(levelName);
+        levelNameText.text = "LEVEL " + levelId.ToString();
+        // currLevel = levelId;
+        // string levelName = "Level " + currLevel;
+        // SceneManager.LoadScene(levelName);
         Time.timeScale = 1f;
     }
 

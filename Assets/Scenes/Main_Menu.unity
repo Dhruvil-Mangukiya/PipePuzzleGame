@@ -4401,6 +4401,7 @@ MonoBehaviour:
   levelButtons: {fileID: 39388620}
   emptyStar: {fileID: 21300000, guid: 445f0951ab47f4caab74f836fec20cb2, type: 3}
   filledStar: {fileID: 21300000, guid: 406fb20e2ffa94908bdbf8ca8e9a20c7, type: 3}
+  levelNameText: {fileID: 760149716}
 --- !u!1 &502246317
 GameObject:
   m_ObjectHideFlags: 0
@@ -6176,6 +6177,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 487981652}
+        m_TargetAssemblyTypeName: LevelMenu, Assembly-CSharp
+        m_MethodName: OpenLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &608462516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6858,6 +6871,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "LEVEL 0\x03"
       objectReference: {fileID: 0}
+    - target: {fileID: 9028443847760845214, guid: 5a77ba0343a9745c4bb06a26a812332c, type: 3}
+      propertyPath: m_fontStyle
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6868,6 +6885,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5577752411650626858, guid: 5a77ba0343a9745c4bb06a26a812332c, type: 3}
   m_PrefabInstance: {fileID: 760149714}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &760149716 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9028443847760845214, guid: 5a77ba0343a9745c4bb06a26a812332c, type: 3}
+  m_PrefabInstance: {fileID: 760149714}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &763408027
 GameObject:
   m_ObjectHideFlags: 0
@@ -17476,6 +17504,8 @@ MonoBehaviour:
   startend_y_position:
   - 5.55
   - -5.55
+  pipe_Prefab: {fileID: 8807532268689791898, guid: d060c58822e03405ea326a1bdd511a91, type: 3}
+  cellSize: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
