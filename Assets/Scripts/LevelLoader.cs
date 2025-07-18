@@ -4,25 +4,25 @@ public class LevelLoader : MonoBehaviour
 {
 
     [Header("References")]
-    public Transform LEVEL_MANAGER;
+    public Transform level_manager;
 
     [Header("Grid")]
-    public GameObject TILE_PREFAB;
+    public GameObject tile_Prefab;
     public int rows = 4;
     public int columns = 4;
     public float spacing = 1.1f;
 
     [Header("Board")]
-    public GameObject BOARD_PREFAB;
+    public GameObject board_Prefab;
 
     [Header("StartendPipe_Prefab;s")]
     public GameObject startPipe_Prefab;
     public GameObject endPipe_Prefab;
 
-    [SerializeField] float[] STARTEND_X_POSITION = { -3.831f, -1.28f, 1.28f, 3.831f };
-    [SerializeField] float[] STARTEND_Y_POSITION = { 5.55f, -5.55f };
+    [SerializeField] float[] startend_x_position = { -3.831f, -1.28f, 1.28f, 3.831f };
+    [SerializeField] float[] startend_y_position = { 5.55f, -5.55f };
 
-    void Start()
+    public void Level()
     {
         BackGroundBoard();
         Grid();
@@ -41,7 +41,7 @@ public class LevelLoader : MonoBehaviour
                 Vector3 offset = new Vector3(-grid_Width / 2f, grid_Height / 2f, 0f);
 
                 Vector3 pos = new Vector3(col * spacing, -row * spacing, 0) + offset;
-                GameObject tile = Instantiate(TILE_PREFAB, pos, Quaternion.identity, LEVEL_MANAGER);
+                GameObject tile = Instantiate(tile_Prefab, pos, Quaternion.identity, level_manager);
                 tile.name = $"{row}.{col}";
             }
         }
@@ -49,16 +49,16 @@ public class LevelLoader : MonoBehaviour
 
     void BackGroundBoard()
     {
-        GameObject board = Instantiate(BOARD_PREFAB, Vector3.zero, Quaternion.identity, LEVEL_MANAGER);
+        GameObject board = Instantiate(board_Prefab, Vector3.zero, Quaternion.identity, level_manager);
         board.name = "BackgroundBoard";
     }
 
     void StartEndPipes()
     {
-        GameObject startPipe = Instantiate(startPipe_Prefab, new Vector3(STARTEND_X_POSITION[0], STARTEND_Y_POSITION[0], 0f), Quaternion.identity, LEVEL_MANAGER);
+        GameObject startPipe = Instantiate(startPipe_Prefab, new Vector3(startend_x_position[0], startend_y_position[0], 0f), Quaternion.identity, level_manager);
         startPipe.name = "StartPipe";
 
-        GameObject endPipe = Instantiate(endPipe_Prefab, new Vector3(STARTEND_X_POSITION[3], STARTEND_Y_POSITION[1], 0f), Quaternion.identity, LEVEL_MANAGER);
+        GameObject endPipe = Instantiate(endPipe_Prefab, new Vector3(startend_x_position[3], startend_y_position[1], 0f), Quaternion.identity, level_manager);
         endPipe.name = "EndPipe";
     }
 }
